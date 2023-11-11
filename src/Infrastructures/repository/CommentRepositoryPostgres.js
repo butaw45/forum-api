@@ -23,8 +23,9 @@ class CommentRepositoryPostgres extends CommentRepository {
     };
 
     const result = await this._pool.query(query);
-
-    return new RegisteredComment({ ...result.rows[0] });
+    const { rows } = result;
+    // return new RegisteredComment({ ...result.rows[0] });
+    return new RegisteredComment(rows[0]);
   }
 
   async verifyAvailableComment(id) {
